@@ -33,7 +33,7 @@ echo "Installing dependencies (git, curl, wget, libnss3-tools, jqn, xsel, openss
 # Install dependencies
 sudo apt update -y
 sudo apt upgrade -y
-sudo apt install -y git curl wget libnss3-tools jq xsel openssl ca-certificates gcc libstdc++6.0-dev libffi-dev libssl-dev make
+sudo apt install -y git curl wget libnss3-tools jq xsel openssl ca-certificates gcc-multilib g++-multilib libc6-dev-i386 libffi-dev libssl-dev make
 
 # config GIT
 git config --global user.name "Jean-Marc Strauven"
