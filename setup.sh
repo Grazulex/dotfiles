@@ -35,6 +35,11 @@ sudo apt update -y
 sudo apt upgrade -y
 sudo apt install -y git curl wget libnss3-tools jq xsel openssl ca-certificates
 
+# config GIT
+git config --global user.name "Jean-Marc Strauven"
+git config --global user.email "jms@grazulex.be"
+git config --global core.editor "nvim"
+git config --global init.defaultBranch "main"
 
 # Install PHP8.4
 echo "Installing PHP 8.4"
@@ -52,9 +57,9 @@ echo "Installing Composer"
 if ! command -v composer &> /dev/null; then
     echo "Composer not found. Installing Composer..."
     php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
-    php composer-setup.php --install-dir=bin --filename=composer
-    sudo mv composer.phar /usr/local/bin/composer
+    php composer-setup.php
     php -r "unlink('composer-setup.php');"
+    sudo mv composer.phar /usr/local/bin/composer
 
     # set composer global bin directory
     COMPOSER_BIN_DIR="$HOME/.config/composer/vendor/bin"
