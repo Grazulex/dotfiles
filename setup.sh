@@ -52,7 +52,8 @@ echo "Installing Composer"
 if ! command -v composer &> /dev/null; then
     echo "Composer not found. Installing Composer..."
     php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
-    php composer-setup.php --install-dir=/usr/local/bin --filename=composer
+    php composer-setup.php --install-dir=bin --filename=composer
+    sudo mv composer.phar /usr/local/bin/composer
     php -r "unlink('composer-setup.php');"
 
     # set composer global bin directory
