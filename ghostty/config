@@ -1,0 +1,8 @@
+theme = dark:catppuccin-frappe,light:catppuccin-latte
+shell-integration = zsh
+auto-update = download
+background-blur-radius = 20
+background-opacity = 0.8
+mouse-hide-while-typing = true
+window-decoration = true
+

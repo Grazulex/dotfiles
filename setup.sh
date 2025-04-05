@@ -29,11 +29,11 @@ echo "Please make sure you have a backup of your system before proceeding."
 read -n 1 -s -r -p "Press any key to continue or Ctrl+C to cancel..." key
 echo
 
-echo "Installing dependencies (git, curl, wget, libnss3-tools, jqn, xsel, openssl, ca-certificates)"
+echo "Installing dependencies (git, curl, wget, libnss3-tools, jqn, xsel, openssl, ca-certificates, gcc, libstdc++6.0-dev, libffi-dev, libssl-dev)"
 # Install dependencies
 sudo apt update -y
 sudo apt upgrade -y
-sudo apt install -y git curl wget libnss3-tools jq xsel openssl ca-certificates
+sudo apt install -y git curl wget libnss3-tools jq xsel openssl ca-certificates gcc
 
 # config GIT
 git config --global user.name "Jean-Marc Strauven"
@@ -103,21 +103,20 @@ echo "Installing NeoVim"
 if ! command -v nvim &> /dev/null; then
     echo "NeoVim not found. Installing NeoVim..."
     sudo apt install -y neovim
-    mkdir -p ~/.config/nvim
 else
     echo "NeoVim is already installed."
 fi
 
 # Install LazyVim
-echo "Installing LazyVim"
-if [ ! -f "$HOME/.config/nvim/lazyvim.json" ]; then
-    echo "LazyVim not found. Installing LazyVim..."
-    git clone https://github.com/LazyVim/starter ~/.config/nvim
-    rm -rf ~/.config/nvim/.git
-    nvim +Lazy +qall
-else
-    echo "LazyVim is already installed."
-fi
+#echo "Installing LazyVim"
+#if [ ! -f "$HOME/.config/nvim/lazyvim.json" ]; then
+#    echo "LazyVim not found. Installing LazyVim..."
+#    git clone https://github.com/LazyVim/starter ~/.config/nvim
+#    rm -rf ~/.config/nvim/.git
+#    nvim +Lazy +qall
+#else
+#    echo "LazyVim is already installed."
+#fi
 
 # Install LazyGit
 echo "Installing LazyGit"
@@ -140,14 +139,6 @@ if ! command -v zsh &> /dev/null; then
     echo "Zsh not found. Installing Zsh..."
     sudo apt install -y zsh
 
-    #add PATH Composer to zsh
-    COMPOSER_BIN_DIR="$HOME/.config/composer/vendor/bin"
-    if [ ! -d "$COMPOSER_BIN_DIR" ]; then
-        mkdir -p "$COMPOSER_BIN_DIR"
-        echo "export PATH=\"\$PATH:$COMPOSER_BIN_DIR\"" >> ~/.zshrc
-        source ~/.zshrc
-    fi
-
     # Set Zsh as the default shell
     if [ "$SHELL" != "$(which zsh)" ]; then
         chsh -s "$(which zsh)"
@@ -161,6 +152,7 @@ fi
 
 # Install Oh My Zsh
 echo "Installing Oh My Zsh"
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
 # Install Ghostty
 echo "Installing Ghostty"
