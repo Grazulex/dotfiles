@@ -1,4 +1,7 @@
 #!/bin/bash
+RED='\033[1;31m'
+NC='\033[0m' # No Color
+YELLOW='\033[1;33m'
 
 # This script sets up the environment for the project by installing necessary dependencies and setting up the virtual environment.
 dotfiles_dir="$HOME/dotfiles/"
@@ -42,9 +45,9 @@ git config --global core.editor "nvim"
 git config --global init.defaultBranch "main"
 
 # Install PHP8.4
-echo "Installing PHP 8.4"
+echo -e "${YELLOW}Installing PHP 8.4${NC}"
 if ! command -v php &> /dev/null; then
-    echo "PHP not found. Installing PHP 8.4..."
+    echo -e "${RED}PHP not found. Installing PHP 8.4...${NC}"
     sudo add-apt-repository ppa:ondrej/php -y
     sudo apt update
     sudo apt install -y php8.4 php8.4-{cli,fpm,mysql,xml,mbstring,curl,zip,gd,bcmath,soap,intl,readline,redis,imagick}
@@ -53,9 +56,9 @@ else
 fi
 
 # Install Composer
-echo "Installing Composer"
+echo -e "${YELLOW}Installing Composer${NC}"
 if ! command -v composer &> /dev/null; then
-    echo "Composer not found. Installing Composer..."
+    echo -e "${RED}Composer not found. Installing Composer...${NC}"
     php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
     php composer-setup.php
     php -r "unlink('composer-setup.php');"
