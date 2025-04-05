@@ -111,7 +111,6 @@ fi
 echo "Installing LazyVim"
 if [ ! -f "$HOME/.config/nvim/lazyvim.json" ]; then
     echo "LazyVim not found. Installing LazyVim..."
-    mkdir -p ~/.config/nvim
     curl -s https://raw.githubusercontent.com/folke/lazy.nvim/main/lazy.vim > ~/.config/nvim/lazy.vim
     nvim +Lazy +qall
 else
