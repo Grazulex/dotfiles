@@ -148,16 +148,23 @@ else
     echo "Zsh is already installed."
 fi
 
-#configure Zsh symlink
+# Install Oh My Zsh
+echo "Installing Oh My Zsh"
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+# Install plugins for Zsh (zsh-autosuggestions, zsh-syntax-highlighting, you-should-use)
+echo "Installing Zsh plugins"
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+git clone https://github.com/MichaelAquilina/zsh-you-should-use.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/you-should-use
+
+#configure Zsh symlink after Oh My Zsh
 if [ -f "$HOME/.zshrc" ]; then
     #delete the old config
     rm -f "$HOME/.zshrc"
 fi
 ln -s "$dotfiles_dir/zsh/.zshrc" "$HOME/.zshrc"
 
-# Install Oh My Zsh
-echo "Installing Oh My Zsh"
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
 # Install Ghostty
 echo "Installing Ghostty"
