@@ -103,6 +103,7 @@ echo "Installing NeoVim"
 if ! command -v nvim &> /dev/null; then
     echo "NeoVim not found. Installing NeoVim..."
     sudo apt install -y neovim
+    mkdir -p ~/.config/nvim
 else
     echo "NeoVim is already installed."
 fi
