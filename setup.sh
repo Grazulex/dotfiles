@@ -150,7 +150,7 @@ fi
 
 # Install Oh My Zsh
 echo "Installing Oh My Zsh"
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 
 # Install plugins for Zsh (zsh-autosuggestions, zsh-syntax-highlighting, you-should-use)
 echo "Installing Zsh plugins"
