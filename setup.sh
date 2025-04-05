@@ -114,7 +114,6 @@ if [ -d "$HOME/.config/nvim" ]; then
 fi
 ln -s "$dotfiles_dir/nvim" "$HOME/.config/nvim"
 echo "NeoVim config symlink created."
-nvim +Lazy +qall
 
 # Install LazyGit
 echo "Installing LazyGit"
@@ -146,7 +145,7 @@ if ! command -v zsh &> /dev/null; then
     # Set Zsh as the default shell
     if [ "$SHELL" != "$(which zsh)" ]; then
         # add zsh into bashrc file
-        echo "export SHELL=$(which zsh)" >> ~/.bashrc
+        echo "zsh" >> ~/.bashrc
         echo "Zsh has been set as the default shell. Please log out and log back in for the changes to take effect."
     else
         echo "Zsh is already set as the default shell."
