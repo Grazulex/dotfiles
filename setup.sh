@@ -33,7 +33,7 @@ echo "Installing dependencies (git, curl, wget, libnss3-tools, jqn, xsel, openss
 # Install dependencies
 sudo apt update -y
 sudo apt upgrade -y
-sudo apt install -y git curl wget libnss3-tools jq xsel openssl ca-certificates gcc-multilib g++-multilib libc6-dev-i386 libffi-dev libssl-dev make
+sudo apt install -y git curl wget libnss3-tools jq xsel openssl ca-certificates gcc-multilib g++-multilib libc6-dev-i386 libffi-dev libssl-dev make ffmpeg 7zip jq poppler-utils fd-find ripgrep fzf zoxide imagemagick
 
 # config GIT
 git config --global user.name "Jean-Marc Strauven"
@@ -130,6 +130,12 @@ fi
 
 # Install Yazi
 echo "Installing Yazi"
+if ! command -v yazi &> /dev/null; then
+    echo "Yazi not found. Installing Yazi..."
+    sudo snap install yazi --classic
+else
+    echo "Yazi is already installed."
+fi
 
 # Install Zsh
 echo "Installing Zsh"
@@ -139,7 +145,8 @@ if ! command -v zsh &> /dev/null; then
 
     # Set Zsh as the default shell
     if [ "$SHELL" != "$(which zsh)" ]; then
-        chsh -s "$(which zsh)"
+        # add zsh into bashrc file
+        echo "export SHELL=$(which zsh)" >> ~/.bashrc
         echo "Zsh has been set as the default shell. Please log out and log back in for the changes to take effect."
     else
         echo "Zsh is already set as the default shell."
@@ -165,7 +172,24 @@ if [ -f "$HOME/.zshrc" ]; then
 fi
 ln -s "$dotfiles_dir/zsh/.zshrc" "$HOME/.zshrc"
 
+# Install Eza
+echo "Installing Eza"
+if ! command -v eza &> /dev/null; then
+    echo "Eza not found. Installing Eza..."
+    wget -c https://github.com/eza-community/eza/releases/latest/download/eza_x86_64-unknown-linux-gnu.tar.gz -O - | tar xz
+    sudo chmod +x eza
+    sudo chown root:root eza
+    sudo mv eza /usr/local/bin/eza
+else
+    echo "Eza is already installed."
+fi
 
 # Install Ghostty
 echo "Installing Ghostty"
+if ! command -v ghostty &> /dev/null; then
+    echo "Ghostty not found. Installing Ghostty..."
+    snap install ghostty --classic
+else
+    echo "Ghostty is already installed."
+fi
 
