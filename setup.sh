@@ -148,6 +148,13 @@ else
     echo "Zsh is already installed."
 fi
 
+#configure Zsh symlink
+if [ -f "$HOME/.zshrc" ]; then
+    #delete the old config
+    rm -f "$HOME/.zshrc"
+fi
+ln -s "$dotfiles_dir/zsh/.zshrc" "$HOME/.zshrc"
+
 # Install Oh My Zsh
 echo "Installing Oh My Zsh"
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
