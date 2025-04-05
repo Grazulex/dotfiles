@@ -12,86 +12,57 @@ dotfiles_dir="$HOME/dotfiles/"
 # Check if the script is run in the correct directory
 [ ! -f "$dotfiles_dir/setup.sh" ] && { echo "Please run this script from the dotfiles directory."; exit 1; }
 
+#show text with description and button to continue
+echo "This script will install the necessary dependencies for the project:"
+echo "1. PHP 8.4"
+echo "2. Composer"
+echo "3. Laravel Installer"
+echo "4. Valet Linux Plus"
+echo "5. LazyVim"
+echo "6. LazyGit"
+echo "7. Yazi"
+echo "8. Zsh"
+echo "9. Oh My Zsh"
+echo "10. Ghostty"
+
+echo "Please make sure you have a backup of your system before proceeding."
+read -n 1 -s -r -p "Press any key to continue or Ctrl+C to cancel..." key
+echo
+
+echo "Installing dependencies (git, curl, wget, zsh, neovim)"
 # Install dependencies
-sudo apt update
+sudo apt update -y
+sudo apt upgrade -y
 sudo apt install -y git curl wget zsh neovim
 
+
 # Install PHP8.4
-if ! command -v php &> /dev/null; then
-    echo "PHP not found. Installing PHP 8.4..."
-    sudo add-apt-repository ppa:ondrej/php -y
-    sudo apt update
-    sudo apt install -y php8.4 php8.4-{cli,fpm,mysql,xml,mbstring,curl,zip,gd,bcmath,soap,intl,readline,redis,imagick}
-else
-    echo "PHP is already installed."
-fi
+echo "Installing PHP 8.4"
 
 # Install Composer
-#if ! command -v composer &> /dev/null; then
-    echo "Composer not found. Installing Composer..."
-    php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
-    php composer-setup.php --install-dir=/usr/local/bin --filename=composer
-    php -r "unlink('composer-setup.php');"
-
-    # set composer global bin directory
-    COMPOSER_BIN_DIR="$HOME/.config/composer/vendor/bin"
-    if [ ! -d "$COMPOSER_BIN_DIR" ]; then
-        mkdir -p "$COMPOSER_BIN_DIR"
-        echo "export PATH=\"\$PATH:$COMPOSER_BIN_DIR\"" >> ~/.bashrc
-        source ~/.bashrc
-    fi
-
-    # Check if Composer is installed
-    if command -v composer &> /dev/null; then
-        echo "Composer installed successfully."
-    else
-        echo "Composer installation failed."
-        exit 1
-    fi
-#else
-    echo "Composer is already installed."
-#fi
+echo "Installing Composer"
 
 # Install Laravel Installer
-[ ! command -v laravel &> /dev/null ] && { echo "Laravel Installer not found. Installing Laravel Installer..."; composer global require laravel/installer; } || echo "Laravel Installer is already installed."
+echo "Installing Laravel Installer"
 
 # Install Valet Linux Plus
-[ ! command -v valet &> /dev/null ] && { echo "Valet Linux Plus not found. Installing Valet Linux Plus..."; composer global require genesisweb/valet-linux-plus; } || echo "Valet Linux Plus is already installed."
+echo "Installing Valet Linux Plus"
 
 # Install LazyVim
-if [ ! -f "$HOME/.config/nvim/lazyvim.json" ]; then
-    echo "LazyVim not found. Installing LazyVim..."
-    TIMESTAMP=$(date +%Y%m%d_%H%M%S)
-    for dir in $HOME/.config/nvim $HOME/.local/share/nvim $HOME/.local/state/nvim $HOME/.cache/nvim; do
-        [ -d "$dir" ] && { mkdir -p "${dir}.bak/$TIMESTAMP"; mv "$dir"/* "${dir}.bak/$TIMESTAMP"/; }
-    done
-    rm -rf $HOME/.config/nvim $HOME/.local/share/nvim $HOME/.local/state/nvim $HOME/.cache/nvim
-    git clone https://github.com/LazyVim/starter $HOME/.config/nvim
-    rm -rf $HOME/.config/nvim/.git
-    touch $HOME/.config/nvim/lazyvim.json
-else
-    echo "LazyVim is already installed."
-fi
+echo "Installing LazyVim"
 
 # Install LazyGit
-if ! command -v lazygit &> /dev/null; then
-    echo "LazyGit not found. Installing LazyGit..."
-    LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep -Po '"tag_name": *"v\K[^"]*')
-    curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/download/v${LAZYGIT_VERSION}/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
-    tar xf lazygit.tar.gz lazygit
-    sudo install lazygit -D -t /usr/local/bin/
-else
-    echo "LazyGit is already installed."
-fi
+echo "Installing LazyGit"
 
 # Install Yazi
-[ ! command -v yazi &> /dev/null ] && { echo "Yazi not found. Installing Yazi..."; sudo snap install yazi --classic; } || echo "Yazi is already installed."
+echo "Installing Yazi"
 
 # Install Zsh
-[ ! command -v zsh &> /dev/null ] && { echo "Zsh not found. Installing Zsh..."; sudo apt install -y zsh; } || echo "Zsh is already installed."
+echo "Installing Zsh"
 
 # Install Oh My Zsh
-[ ! -d "$HOME/.oh-my-zsh" ] && { echo "Oh My Zsh not found. Installing Oh My Zsh..."; sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"; } || echo "Oh My Zsh is already installed."
+echo "Installing Oh My Zsh"
 
 # Install Ghostty
-[ ! command -v ghostty &> /dev/null ] && { echo "Ghostty not found. Installing Ghostty..."; sudo apt install -y ghostty; } || echo "Ghostty is already installed."
+echo "Installing Ghostty"
+
