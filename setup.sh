@@ -109,12 +109,23 @@ fi
 
 # Install LazyVim
 echo "Installing LazyVim"
+if [ ! -f "$HOME/.config/nvim/lazyvim.json" ]; then
+    echo "LazyVim not found. Installing LazyVim..."
+    mkdir -p ~/.config/nvim
+    curl -s https://raw.githubusercontent.com/folke/lazy.nvim/main/lazy.vim > ~/.config/nvim/lazy.vim
+    nvim +Lazy +qall
+else
+    echo "LazyVim is already installed."
+fi
 
 # Install LazyGit
 echo "Installing LazyGit"
 if ! command -v lazygit &> /dev/null; then
     echo "LazyGit not found. Installing LazyGit..."
-    sudo apt install -y lazygit
+    LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | \grep -Po '"tag_name": *"v\K[^"]*')
+    curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/download/v${LAZYGIT_VERSION}/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
+    tar xf lazygit.tar.gz lazygit
+    sudo install lazygit -D -t /usr/local/bin/
 else
     echo "LazyGit is already installed."
 fi
