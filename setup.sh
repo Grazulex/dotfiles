@@ -33,7 +33,7 @@ echo "Installing dependencies (git, curl, wget, libnss3-tools, jqn, xsel, openss
 # Install dependencies
 sudo apt update -y
 sudo apt upgrade -y
-sudo apt install -y git curl wget libnss3-tools jq xsel openssl ca-certificates gcc
+sudo apt install -y git curl wget libnss3-tools jq xsel openssl ca-certificates gcc libstdc++6.0-dev libffi-dev libssl-dev make
 
 # config GIT
 git config --global user.name "Jean-Marc Strauven"
@@ -107,16 +107,14 @@ else
     echo "NeoVim is already installed."
 fi
 
-# Install LazyVim
-#echo "Installing LazyVim"
-#if [ ! -f "$HOME/.config/nvim/lazyvim.json" ]; then
-#    echo "LazyVim not found. Installing LazyVim..."
-#    git clone https://github.com/LazyVim/starter ~/.config/nvim
-#    rm -rf ~/.config/nvim/.git
-#    nvim +Lazy +qall
-#else
-#    echo "LazyVim is already installed."
-#fi
+# configure NeoVim symlink
+if [ -d "$HOME/.config/nvim" ]; then
+    #delete the old config
+    rm -rf "$HOME/.config/nvim"
+fi
+ln -s "$dotfiles_dir/nvim" "$HOME/.config/nvim"
+echo "NeoVim config symlink created."
+nvim +Lazy +qall
 
 # Install LazyGit
 echo "Installing LazyGit"
