@@ -85,7 +85,7 @@ if ! command -v php &> /dev/null; then
     sudo add-apt-repository ppa:ondrej/php -y > /dev/null
     sudo apt update > /dev/null
     sudo apt upgrade -y > /dev/null
-    sudo apt install -y php8.4 php8.4-{cli,fpm,mysql,xml,mbstring,curl,zip,gd,bcmath,soap,intl,readline,redis,imagick} > /dev/null
+    sudo apt install -y php8.4 php8.4-{cli,fpm,mysql,xml,mbstring,curl,zip,gd,bcmath,soap,intl,readline,redis,imagick,sqlite3} > /dev/null
 else
     echo -e "${GREEN}PHP is already installed.${NC}"
 fi
@@ -116,6 +116,23 @@ if ! command -v composer &> /dev/null; then
     fi
 else
     echo -e "${GREEN}Composer is already installed.${NC}"
+fi
+
+# Install NodeJs with snap
+echo -e "${YELLOW}.------------------------.${NC}";
+echo -e "${YELLOW}| #    #  ####  #    # |${NC}";
+echo -e "${YELLOW}| ##   # #    # #    # |${NC}";
+echo -e "${YELLOW}| # #  # #    # #    # |${NC}";
+echo -e "${YELLOW}| #  # # #    # #    # |${NC}";
+echo -e "${YELLOW}| #   ## #    # #    # |${NC}";
+echo -e "${YELLOW}| #    #  ####  #    # |${NC}";
+echo -e "${YELLOW}'------------------------'${NC}";
+echo
+if ! command -v node &> /dev/null; then
+    echo -e "${RED}NodeJs not found. Installing NodeJs.${NC}"
+    sudo snap install node --classic  > /dev/null
+else
+    echo -e "${GREEN}NodeJs is already installed.${NC}"
 fi
 
 echo -e "${YELLOW}.--------------------------------------------------.${NC}";
