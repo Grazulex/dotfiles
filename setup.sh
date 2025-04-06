@@ -4,6 +4,8 @@ NC='\033[0m' # No Color
 YELLOW='\033[1;33m'
 GREEN='\033[1;32m'
 
+# https://www.asciiart.eu/text-to-ascii-art
+
 # This script sets up the environment for the project by installing necessary dependencies and setting up the virtual environment.
 dotfiles_dir="$HOME/dotfiles/"
 
@@ -126,7 +128,7 @@ echo -e "${YELLOW}'--------------------------------------------------'${NC}";
 echo
 if ! command -v laravel &> /dev/null; then
     echo -e "${RED}Laravel Installer not found. Installing Laravel Installer.${NC}"
-    composer global require laravel/installer  > /dev/null
+    composer global require laravel/installer > /dev/null 2>&1
 else
     echo -e "${GREEN}Laravel Installer is already installed.${NC}"
 fi
@@ -143,7 +145,7 @@ echo -e "${YELLOW}'---------------------------------------------'${NC}";
 echo
 if ! command -v valet &> /dev/null; then
     echo -e "${RED}Valet Linux Plus not found. Installing Valet Linux Plus.${NC}"
-    composer global require genesisweb/valet-linux-plus  > /dev/null
+    composer global require genesisweb/valet-linux-plus  > /dev/null  2>&1
 else
     echo -e "${GREEN}Valet Linux Plus is already installed.${NC}"
 fi
@@ -185,7 +187,7 @@ echo
 if ! command -v lazygit &> /dev/null; then
     echo -e "${RED}LazyGit not found. Installing LazyGit.${NC}"
     LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | \grep -Po '"tag_name": *"v\K[^"]*')  > /dev/null
-    curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/download/v${LAZYGIT_VERSION}/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"  > /dev/null
+    curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/download/v${LAZYGIT_VERSION}/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"  > /dev/null  2>&1
     tar xf lazygit.tar.gz lazygit  > /dev/null
     sudo install lazygit -D -t /usr/local/bin/  > /dev/null
 else
@@ -219,7 +221,7 @@ echo -e "${YELLOW}|  #     #    # #    # |${NC}";
 echo -e "${YELLOW}| ######  ####  #    # |${NC}";
 echo -e "${YELLOW}'----------------------'${NC}";
 if ! command -v zsh &> /dev/null; then
-    echo -e"${RED}Zsh not found. Installing Zsh.${NC}"
+    echo -e "${RED}Zsh not found. Installing Zsh.${NC}"
     sudo apt install -y zsh  > /dev/null
 
     # Set Zsh as the default shell
