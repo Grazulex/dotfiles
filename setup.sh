@@ -2,6 +2,7 @@
 RED='\033[1;31m'
 NC='\033[0m' # No Color
 YELLOW='\033[1;33m'
+GREEN='\033[1;32m'
 
 # This script sets up the environment for the project by installing necessary dependencies and setting up the virtual environment.
 dotfiles_dir="$HOME/dotfiles/"
@@ -14,6 +15,16 @@ dotfiles_dir="$HOME/dotfiles/"
 
 # Check if the script is run in the correct directory
 [ ! -f "$dotfiles_dir/setup.sh" ] && { echo "Please run this script from the dotfiles directory."; exit 1; }
+
+echo ".--------------------------------------------------------------------.";
+echo "| #     #                                                            |";
+echo "| ##   ## #   #    #####   ####  ##### ###### # #      ######  ####  |";
+echo "| # # # #  # #     #    # #    #   #   #      # #      #      #      |";
+echo "| #  #  #   #      #    # #    #   #   #####  # #      #####   ####  |";
+echo "| #     #   #      #    # #    #   #   #      # #      #           # |";
+echo "| #     #   #      #    # #    #   #   #      # #      #      #    # |";
+echo "| #     #   #      #####   ####    #   #      # ###### ######  ####  |";
+echo "'--------------------------------------------------------------------'";
 
 #show text with description and button to continue
 echo "This script will install the necessary dependencies for the project:"
@@ -28,15 +39,27 @@ echo "8. Zsh"
 echo "9. Oh My Zsh"
 echo "10. Ghostty"
 
+echo
+
+
 echo "Please make sure you have a backup of your system before proceeding."
 read -n 1 -s -r -p "Press any key to continue or Ctrl+C to cancel..." key
 echo
 
-echo "Installing dependencies (git, curl, wget, libnss3-tools, jqn, xsel, openssl, ca-certificates, gcc, libstdc++6.0-dev, libffi-dev, libssl-dev)"
-# Install dependencies
-sudo apt update -y
-sudo apt upgrade -y
-sudo apt install -y git curl wget libnss3-tools jq xsel openssl ca-certificates gcc-multilib g++-multilib libc6-dev-i386 libffi-dev libssl-dev make ffmpeg 7zip jq poppler-utils fd-find ripgrep fzf zoxide imagemagick
+
+echo -e "${YELLOW}.---------------------------------------------------------------------------------.${NC}";
+echo -e "${YELLOW}| ######                                                                          |${NC}";
+echo -e "${YELLOW}| #     # ###### #####  ###### #    # #####  ###### #    #  ####  # ######  ####  |${NC}";
+echo -e "${YELLOW}| #     # #      #    # #      ##   # #    # #      ##   # #    # # #      #      |${NC}";
+echo -e "${YELLOW}| #     # #####  #    # #####  # #  # #    # #####  # #  # #      # #####   ####  |${NC}";
+echo -e "${YELLOW}| #     # #      #####  #      #  # # #    # #      #  # # #      # #           # |${NC}";
+echo -e "${YELLOW}| #     # #      #      #      #   ## #    # #      #   ## #    # # #      #    # |${NC}";
+echo -e "${YELLOW}| ######  ###### #      ###### #    # #####  ###### #    #  ####  # ######  ####  |${NC}";
+echo -e "${YELLOW}'---------------------------------------------------------------------------------'${NC}";
+echo
+sudo apt update -y > /dev/null
+sudo apt upgrade -y > /dev/null
+sudo apt install -y git curl wget libnss3-tools jq xsel openssl ca-certificates gcc-multilib g++-multilib libc6-dev-i386 libffi-dev libssl-dev make ffmpeg 7zip jq poppler-utils fd-find ripgrep fzf zoxide imagemagick > /dev/null
 
 # config GIT
 git config --global user.name "Jean-Marc Strauven"
@@ -44,70 +67,102 @@ git config --global user.email "jms@grazulex.be"
 git config --global core.editor "nvim"
 git config --global init.defaultBranch "main"
 
-# Install PHP8.4
-echo -e "${YELLOW}Installing PHP 8.4${NC}"
+echo -e "${YELLOW}.------------------------------------------------.${NC}";
+echo -e "${YELLOW}| ######  #     # ######      #####      #       |${NC}";
+echo -e "${YELLOW}| #     # #     # #     #    #     #     #    #  |${NC}";
+echo -e "${YELLOW}| #     # #     # #     #    #     #     #    #  |${NC}";
+echo -e "${YELLOW}| ######  ####### ######      #####      #    #  |${NC}";
+echo -e "${YELLOW}| #       #     # #          #     # ### ####### |${NC}";
+echo -e "${YELLOW}| #       #     # #          #     # ###      #  |${NC}";
+echo -e "${YELLOW}| #       #     # #           #####  ###      #  |${NC}";
+echo -e "${YELLOW}'------------------------------------------------'${NC}";
+echo
 if ! command -v php &> /dev/null; then
-    echo -e "${RED}PHP not found. Installing PHP 8.4...${NC}"
-    sudo add-apt-repository ppa:ondrej/php -y
-    sudo apt update
-    sudo apt install -y php8.4 php8.4-{cli,fpm,mysql,xml,mbstring,curl,zip,gd,bcmath,soap,intl,readline,redis,imagick}
+    echo -e "${RED}PHP not found. Installing PHP 8.4${NC}"
+    sudo add-apt-repository ppa:ondrej/php -y > /dev/null
+    sudo apt update > /dev/null
+    sudo apt upgrade -y > /dev/null
+    sudo apt install -y php8.4 php8.4-{cli,fpm,mysql,xml,mbstring,curl,zip,gd,bcmath,soap,intl,readline,redis,imagick} > /dev/null
 else
-    echo "PHP is already installed."
+    echo -e "${GREEN}PHP is already installed.${NC}"
 fi
 
-# Install Composer
-echo -e "${YELLOW}Installing Composer${NC}"
+echo -e "${YELLOW}.----------------------------------------------------------.${NC}";
+echo -e "${YELLOW}|  #####                                                   |${NC}";
+echo -e "${YELLOW}| #     #  ####  #    # #####   ####   ####  ###### #####  |${NC}";
+echo -e "${YELLOW}| #       #    # ##  ## #    # #    # #      #      #    # |${NC}";
+echo -e "${YELLOW}| #       #    # # ## # #    # #    #  ####  #####  #    # |${NC}";
+echo -e "${YELLOW}| #       #    # #    # #####  #    #      # #      #####  |${NC}";
+echo -e "${YELLOW}| #     # #    # #    # #      #    # #    # #      #   #  |${NC}";
+echo -e "${YELLOW}|  #####   ####  #    # #       ####   ####  ###### #    # |${NC}";
+echo -e "${YELLOW}'----------------------------------------------------------'${NC}";
+echo
 if ! command -v composer &> /dev/null; then
-    echo -e "${RED}Composer not found. Installing Composer...${NC}"
-    php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
-    php composer-setup.php
-    php -r "unlink('composer-setup.php');"
-    sudo mv composer.phar /usr/local/bin/composer
+    echo -e "${RED}Composer not found. Installing Composer.${NC}"
+    php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"  > /dev/null
+    php composer-setup.php  > /dev/null
+    php -r "unlink('composer-setup.php');"  > /dev/null
+    sudo mv composer.phar /usr/local/bin/composer  > /dev/null
 
     # set composer global bin directory
     COMPOSER_BIN_DIR="$HOME/.config/composer/vendor/bin"
     if [ ! -d "$COMPOSER_BIN_DIR" ]; then
-        mkdir -p "$COMPOSER_BIN_DIR"
+        mkdir -p "$COMPOSER_BIN_DIR"  > /dev/null
         echo "export PATH=\"\$PATH:$COMPOSER_BIN_DIR\"" >> ~/.bashrc
         source ~/.bashrc
     fi
-
-    # Check if Composer is installed
-    if command -v composer &> /dev/null; then
-        echo "Composer installed successfully."
-    else
-        echo "Composer installation failed."
-        exit 1
-    fi
 else
-    echo "Composer is already installed."
+    echo -e "${GREEN}Composer is already installed.${NC}"
 fi
 
-# Install Laravel Installer
-echo "Installing Laravel Installer"
+echo -e "${YELLOW}.--------------------------------------------------.${NC}";
+echo -e "${YELLOW}| #        ##   #####    ##   #    # ###### #      |${NC}";
+echo -e "${YELLOW}| #       #  #  #    #  #  #  #    # #      #      |${NC}";
+echo -e "${YELLOW}| #      #    # #    # #    # #    # #####  #      |${NC}";
+echo -e "${YELLOW}| #      ###### #####  ###### #    # #      #      |${NC}";
+echo -e "${YELLOW}| #      #    # #   #  #    #  #  #  #      #      |${NC}";
+echo -e "${YELLOW}| ###### #    # #    # #    #   ##   ###### ###### |${NC}";
+echo -e "${YELLOW}'--------------------------------------------------'${NC}";
+echo
 if ! command -v laravel &> /dev/null; then
-    echo "Laravel Installer not found. Installing Laravel Installer..."
-    composer global require laravel/installer
+    echo -e "${RED}Laravel Installer not found. Installing Laravel Installer.${NC}"
+    composer global require laravel/installer  > /dev/null
 else
-    echo "Laravel Installer is already installed."
+    echo -e "${GREEN}Laravel Installer is already installed.${NC}"
 fi
 
-# Install Valet Linux Plus
-echo "Installing Valet Linux Plus"
+echo -e "${YELLOW}.---------------------------------------------.${NC}";
+echo -e "${YELLOW}| #     #                                     |${NC}";
+echo -e "${YELLOW}| #     #   ##   #      ###### #####      #   |${NC}";
+echo -e "${YELLOW}| #     #  #  #  #      #        #        #   |${NC}";
+echo -e "${YELLOW}| #     # #    # #      #####    #      ##### |${NC}";
+echo -e "${YELLOW}|  #   #  ###### #      #        #        #   |${NC}";
+echo -e "${YELLOW}|   # #   #    # #      #        #        #   |${NC}";
+echo -e "${YELLOW}|    #    #    # ###### ######   #            |${NC}";
+echo -e "${YELLOW}'---------------------------------------------'${NC}";
+echo
 if ! command -v valet &> /dev/null; then
-    echo "Valet Linux Plus not found. Installing Valet Linux Plus..."
-    composer global require genesisweb/valet-linux-plus
+    echo -e "${RED}Valet Linux Plus not found. Installing Valet Linux Plus.${NC}"
+    composer global require genesisweb/valet-linux-plus  > /dev/null
 else
-    echo "Valet Linux Plus is already installed."
+    echo -e "${GREEN}Valet Linux Plus is already installed.${NC}"
 fi
 
 # Install NeoVim
-echo "Installing NeoVim"
+echo -e "${YELLOW}.------------------------.${NC}";
+echo -e "${YELLOW}| #    # #    # # #    # |${NC}";
+echo -e "${YELLOW}| ##   # #    # # ##  ## |${NC}";
+echo -e "${YELLOW}| # #  # #    # # # ## # |${NC}";
+echo -e "${YELLOW}| #  # # #    # # #    # |${NC}";
+echo -e "${YELLOW}| #   ##  #  #  # #    # |${NC}";
+echo -e "${YELLOW}| #    #   ##   # #    # |${NC}";
+echo -e "${YELLOW}'------------------------'${NC}";
+echo
 if ! command -v nvim &> /dev/null; then
-    echo "NeoVim not found. Installing NeoVim..."
-    sudo apt install -y neovim
+    echo -e "${RED}NeoVim not found. Installing NeoVim.${NC}"
+    sudo apt install -y neovim  > /dev/null
 else
-    echo "NeoVim is already installed."
+    echo -e "${GREEN}NeoVim is already installed.${NC}"
 fi
 
 # configure NeoVim symlink
@@ -116,82 +171,150 @@ if [ -d "$HOME/.config/nvim" ]; then
     rm -rf "$HOME/.config/nvim"
 fi
 ln -s "$dotfiles_dir/nvim" "$HOME/.config/nvim"
-echo "NeoVim config symlink created."
 
 # Install LazyGit
-echo "Installing LazyGit"
+echo -e "${YELLOW}.-------------------------------------------.${NC}";
+echo -e "${YELLOW}| #        ##   ###### #   #  ####  # ##### |${NC}";
+echo -e "${YELLOW}| #       #  #      #   # #  #    # #   #   |${NC}";
+echo -e "${YELLOW}| #      #    #    #     #   #      #   #   |${NC}";
+echo -e "${YELLOW}| #      ######   #      #   #  ### #   #   |${NC}";
+echo -e "${YELLOW}| #      #    #  #       #   #    # #   #   |${NC}";
+echo -e "${YELLOW}| ###### #    # ######   #    ####  #   #   |${NC}";
+echo -e "${YELLOW}'-------------------------------------------'${NC}";
+echo
 if ! command -v lazygit &> /dev/null; then
-    echo "LazyGit not found. Installing LazyGit..."
-    LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | \grep -Po '"tag_name": *"v\K[^"]*')
-    curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/download/v${LAZYGIT_VERSION}/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
-    tar xf lazygit.tar.gz lazygit
-    sudo install lazygit -D -t /usr/local/bin/
+    echo -e "${RED}LazyGit not found. Installing LazyGit.${NC}"
+    LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | \grep -Po '"tag_name": *"v\K[^"]*')  > /dev/null
+    curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/download/v${LAZYGIT_VERSION}/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"  > /dev/null
+    tar xf lazygit.tar.gz lazygit  > /dev/null
+    sudo install lazygit -D -t /usr/local/bin/  > /dev/null
 else
-    echo "LazyGit is already installed."
+    echo -e "${GREEN}LazyGit is already installed.${NC}"
 fi
 
 # Install Yazi
-echo "Installing Yazi"
+echo -e "${YELLOW}.-----------------------.${NC}";
+echo -e "${YELLOW}| #   #   ##   ###### # |${NC}";
+echo -e "${YELLOW}|  # #   #  #      #  # |${NC}";
+echo -e "${YELLOW}|   #   #    #    #   # |${NC}";
+echo -e "${YELLOW}|   #   ######   #    # |${NC}";
+echo -e "${YELLOW}|   #   #    #  #     # |${NC}";
+echo -e "${YELLOW}|   #   #    # ###### # |${NC}";
+echo -e "${YELLOW}'-----------------------'${NC}";
+echo
 if ! command -v yazi &> /dev/null; then
-    echo "Yazi not found. Installing Yazi..."
-    sudo snap install yazi --classic
+    echo -e "${RED}Yazi not found. Installing Yazi.${NC}"
+    sudo snap install yazi --classic  > /dev/null
 else
-    echo "Yazi is already installed."
+    echo -e "${GREEN}Yazi is already installed.${NC}"
 fi
 
 # Install Zsh
-echo "Installing Zsh"
+echo -e "${YELLOW}.----------------------.${NC}";
+echo -e "${YELLOW}| ######  ####  #    # |${NC}";
+echo -e "${YELLOW}|     #  #      #    # |${NC}";
+echo -e "${YELLOW}|    #    ####  ###### |${NC}";
+echo -e "${YELLOW}|   #         # #    # |${NC}";
+echo -e "${YELLOW}|  #     #    # #    # |${NC}";
+echo -e "${YELLOW}| ######  ####  #    # |${NC}";
+echo -e "${YELLOW}'----------------------'${NC}";
 if ! command -v zsh &> /dev/null; then
-    echo "Zsh not found. Installing Zsh..."
-    sudo apt install -y zsh
+    echo -e"${RED}Zsh not found. Installing Zsh.${NC}"
+    sudo apt install -y zsh  > /dev/null
 
     # Set Zsh as the default shell
     if [ "$SHELL" != "$(which zsh)" ]; then
         # add zsh into bashrc file
         echo "zsh" >> ~/.bashrc
-        echo "Zsh has been set as the default shell. Please log out and log back in for the changes to take effect."
+        echo -e "${RED}Zsh has been set as the default shell. Please log out and log back in for the changes to take effect.${NC}"
     else
-        echo "Zsh is already set as the default shell."
+        echo -e "${GREEN}Zsh is already set as the default shell.${NC}"
     fi
 else
-    echo "Zsh is already installed."
+    echo -e "${GREEN}Zsh is already installed.${NC}"
 fi
 
 # Install Oh My Zsh
-echo "Installing Oh My Zsh"
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+echo -e "${YELLOW}.----------------------------------------------------------.${NC}";
+echo -e "${YELLOW}| #######           #     #          #######               |${NC}";
+echo -e "${YELLOW}| #     # #    #    ##   ## #   #         #   ####  #    # |${NC}";
+echo -e "${YELLOW}| #     # #    #    # # # #  # #         #   #      #    # |${NC}";
+echo -e "${YELLOW}| #     # ######    #  #  #   #         #     ####  ###### |${NC}";
+echo -e "${YELLOW}| #     # #    #    #     #   #        #          # #    # |${NC}";
+echo -e "${YELLOW}| #     # #    #    #     #   #       #      #    # #    # |${NC}";
+echo -e "${YELLOW}| ####### #    #    #     #   #      #######  ####  #    # |${NC}";
+echo -e "${YELLOW}'----------------------------------------------------------'${NC}";
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended  > /dev/null
 
 # Install plugins for Zsh (zsh-autosuggestions, zsh-syntax-highlighting, you-should-use)
-echo "Installing Zsh plugins"
-git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
-git clone https://github.com/MichaelAquilina/zsh-you-should-use.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/you-should-use
+echo -e "${YELLOW}.----------------------------------------------------------------------.${NC}";
+echo -e "${YELLOW}| #######                                                              |${NC}";
+echo -e "${YELLOW}|      #   ####  #    #    #####  #      #    #  ####  # #    #  ####  |${NC}";
+echo -e "${YELLOW}|     #   #      #    #    #    # #      #    # #    # # ##   # #      |${NC}";
+echo -e "${YELLOW}|    #     ####  ######    #    # #      #    # #      # # #  #  ####  |${NC}";
+echo -e "${YELLOW}|   #          # #    #    #####  #      #    # #  ### # #  # #      # |${NC}";
+echo -e "${YELLOW}|  #      #    # #    #    #      #      #    # #    # # #   ## #    # |${NC}";
+echo -e "${YELLOW}| #######  ####  #    #    #      ######  ####   ####  # #    #  ####  |${NC}";
+echo -e "${YELLOW}'----------------------------------------------------------------------'${NC}";
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions  > /dev/null
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting  > /dev/null
+git clone https://github.com/MichaelAquilina/zsh-you-should-use.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/you-should-use  > /dev/null
 
 #configure Zsh symlink after Oh My Zsh
 if [ -f "$HOME/.zshrc" ]; then
     #delete the old config
-    rm -f "$HOME/.zshrc"
+    rm -f "$HOME/.zshrc"  > /dev/null
 fi
 ln -s "$dotfiles_dir/zsh/.zshrc" "$HOME/.zshrc"
 
 # Install Eza
-echo "Installing Eza"
+echo -e "${YELLOW}.----------------------.${NC}";
+echo -e "${YELLOW}| ###### ######   ##   |${NC}";
+echo -e "${YELLOW}| #          #   #  #  |${NC}";
+echo -e "${YELLOW}| #####     #   #    # |${NC}";
+echo -e "${YELLOW}| #        #    ###### |${NC}";
+echo -e "${YELLOW}| #       #     #    # |${NC}";
+echo -e "${YELLOW}| ###### ###### #    # |${NC}";
+echo -e "${YELLOW}'----------------------'${NC}";
 if ! command -v eza &> /dev/null; then
-    echo "Eza not found. Installing Eza..."
-    wget -c https://github.com/eza-community/eza/releases/latest/download/eza_x86_64-unknown-linux-gnu.tar.gz -O - | tar xz
-    sudo chmod +x eza
-    sudo chown root:root eza
-    sudo mv eza /usr/local/bin/eza
+    echo -e "${RED}Eza not found. Installing Eza.${NC}"
+    wget -c https://github.com/eza-community/eza/releases/latest/download/eza_x86_64-unknown-linux-gnu.tar.gz -O - | tar xz  > /dev/null
+    sudo chmod +x eza > /dev/null
+    sudo chown root:root eza  > /dev/null
+    sudo mv eza /usr/local/bin/eza  > /dev/null
 else
-    echo "Eza is already installed."
+    echo -e "${GREEN}Eza is already installed.${NC}"
 fi
 
 # Install Ghostty
-echo "Installing Ghostty"
+echo -e "${YELLOW}.------------------------------------------------.${NC}";
+echo -e "${YELLOW}|  #####                                         |${NC}";
+echo -e "${YELLOW}| #     # #    #  ####   ####  ##### ##### #   # |${NC}";
+echo -e "${YELLOW}| #       #    # #    # #        #     #    # #  |${NC}";
+echo -e "${YELLOW}| #  #### ###### #    #  ####    #     #     #   |${NC}";
+echo -e "${YELLOW}| #     # #    # #    #      #   #     #     #   |${NC}";
+echo -e "${YELLOW}| #     # #    # #    # #    #   #     #     #   |${NC}";
+echo -e "${YELLOW}|  #####  #    #  ####   ####    #     #     #   |${NC}";
+echo -e "${YELLOW}'------------------------------------------------'${NC}";
 if ! command -v ghostty &> /dev/null; then
-    echo "Ghostty not found. Installing Ghostty..."
-    snap install ghostty --classic
+    echo -e "${RED}Ghostty not found. Installing Ghostty.${NC}"
+    snap install ghostty --classic  > /dev/null
 else
-    echo "Ghostty is already installed."
+    echo -e "${GREEN}Ghostty is already installed.${NC}"
 fi
 
+# Configure Ghostty symlink
+if [ -d "$HOME/.config/ghostty" ]; then
+    #delete the old config
+    rm -rf "$HOME/.config/ghostty"  > /dev/null
+fi
+ln -s "$dotfiles_dir/ghostty" "$HOME/.config/ghostty"
+
+echo -e "${GREEN}.----------------------.${NC}";
+echo -e "${GREEN}| ###### #    # #####  |${NC}";
+echo -e "${GREEN}| #      ##   # #    # |${NC}";
+echo -e "${GREEN}| #####  # #  # #    # |${NC}";
+echo -e "${GREEN}| #      #  # # #    # |${NC}";
+echo -e "${GREEN}| #      #   ## #    # |${NC}";
+echo -e "${GREEN}| ###### #    # #####  |${NC}";
+echo -e "${GREEN}'----------------------'${NC}";
