@@ -338,3 +338,22 @@ echo -e "${GREEN}| #      #  # # #    # |${NC}";
 echo -e "${GREEN}| #      #   ## #    # |${NC}";
 echo -e "${GREEN}| ###### #    # #####  |${NC}";
 echo -e "${GREEN}'----------------------'${NC}";
+
+# give last instructions
+echo -e "${GREEN}All dependencies have been installed.${NC}"
+echo -e "${GREEN}Please restart your terminal.${NC}"
+echo -e "${GREEN}Please run the following command to set up Valet:${NC}"
+echo -e "${GREEN}valet install${NC}"
+echo -e "${GREEN}In your root WWW folder, run the following command to set up Valet:${NC}"
+echo -e "${GREEN}valet park${NC}"
+echo -e "${GREEN}To active a site, into his directory (sub-directory of the WWW root):${NC}"
+echo -e "${GREEN}valet link${NC}"
+echo -e "${GREEN}Optional:Always in the app directory, run this comment to secure the url:${NC}"
+echo -e "${GREEN}valet secure${NC}"
+echo -e "${GREEN}To access the site, use the following URL:${NC}"
+echo -e "${GREEN}http://<site-name>.test${NC}"
+echo
+echo -e "${GREEN}Please start Nvim to install all plugins${NC}"
+
+
+
