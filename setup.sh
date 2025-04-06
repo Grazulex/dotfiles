@@ -61,7 +61,8 @@ echo -e "${YELLOW}'-------------------------------------------------------------
 echo
 sudo apt update -y > /dev/null
 sudo apt upgrade -y > /dev/null
-sudo apt install -y git curl wget libnss3-tools jq xsel openssl ca-certificates gcc-multilib g++-multilib libc6-dev-i386 libffi-dev libssl-dev make ffmpeg 7zip jq poppler-utils fd-find ripgrep fzf zoxide imagemagick > /dev/null
+sudo apt install -y git curl wget libnss3-tools jq xsel openssl ca-certificates gcc-multilib g++-multilib libc6-dev-i386 libffi-dev libssl-dev make ffmpeg 7zip jq poppler-utils imagemagick > /dev/null
+sudo apt install -y fd-find ripgrep fzf ncdu zoxide > /dev/null
 
 # config GIT
 git config --global user.name "Jean-Marc Strauven"
@@ -162,7 +163,7 @@ echo -e "${YELLOW}'------------------------'${NC}";
 echo
 if ! command -v nvim &> /dev/null; then
     echo -e "${RED}NeoVim not found. Installing NeoVim.${NC}"
-    sudo apt install -y neovim  > /dev/null
+    sudo snap install nvim --classic > /dev/null
 else
     echo -e "${GREEN}NeoVim is already installed.${NC}"
 fi
