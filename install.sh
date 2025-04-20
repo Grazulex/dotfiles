@@ -8,6 +8,14 @@ YELLOW='\033[0;33m'
 #Yazi
 echo -e "${YELLOW}Installing Yazi config...${NC}"
 
+#check if yazi exists in $HOME/.config/. if not create it
+if [ ! -d "$HOME/.config/yazi" ]; then
+  echo -e "${GREEN}Creating directory $HOME/.config/yazi...${NC}"
+  mkdir -p "$HOME/.config/yazi"
+else
+  echo -e "${RED}Directory $HOME/.config/yazi already exists...${NC}"
+fi
+
 if [ -f "$HOME/.config/yazi/theme.toml" ]; then
   echo -e "${RED}Removing existing theme.toml...${NC}"
   rm "$HOME/.config/yazi/theme.toml"
@@ -65,5 +73,62 @@ echo -e "${GREEN}Adding alias y to .bashrc...${NC}"
 sed -i '$a alias y="yazi"' "$HOME/.bashrc"
 
 echo ""
+
+#update nvim lua config file
+echo -e "${YELLOW}Updating nvim lua config file...${NC}"
+
+if [ -f "$HOME/.config/nvim/lazyvim.json" ]; then
+  echo -e "${RED}Removing existing lazyvim.json...${NC}"
+  rm "$HOME/.config/nvim/lazyvim.json"
+fi
+
+ln -s "$(pwd)/nvim/lazyvim.json" "$HOME/.config/nvim/lazyvim.json"
+
+if [ -f "$HOME/.config/nvim/stylua.toml" ]; then
+  echo -e "${RED}Removing existing stylua.toml...${NC}"
+  rm "$HOME/.config/nvim/stylua.toml"
+fi
+
+ln -s "$(pwd)/nvim/stylua.toml" "$HOME/.config/nvim/stylua.toml"
+
+if [ -f "$HOME/.config/nvim/lua/config/autocmds.lua" ]; then
+  echo -e "${RED}Removing existing autocmds.lua...${NC}"
+  rm "$HOME/.config/nvim/lua/config/autocmds.lua"
+fi
+
+ln -s "$(pwd)/nvim/lua/config/autocmds.lua" "$HOME/.config/nvim/lua/config/autocmds.lua"
+
+if [ -f "$HOME/.config/nvim/lua/config/keymaps.lua" ]; then
+  echo -e "${RED}Removing existing keymaps.lua...${NC}"
+  rm "$HOME/.config/nvim/lua/config/keymaps.lua"
+fi
+
+ln -s "$(pwd)/nvim/lua/config/keymaps.lua" "$HOME/.config/nvim/lua/config/keymaps.lua"
+
+if [ -f "$HOME/.config/nvim/lua/config/lazy.lua" ]; then
+  echo -e "${RED}Removing existing lazy.lua...${NC}"
+  rm "$HOME/.config/nvim/lua/config/lazy.lua"
+fi
+
+ln -s "$(pwd)/nvim/lua/config/lazy.lua" "$HOME/.config/nvim/lua/config/lazy.lua"
+
+if [ -f "$HOME/.config/nvim/lua/config/options.lua" ]; then
+  echo -e "${RED}Removing existing options.lua...${NC}"
+  rm "$HOME/.config/nvim/lua/config/options.lua"
+fi
+
+ln -s "$(pwd)/nvim/lua/config/options.lua" "$HOME/.config/nvim/lua/config/options.lua"
+
+#install nvim plugins files in ~/.config/nvim/lua/plugins
+
+#remove all files in plugins directory
+for file in "$HOME/.config/nvim/lua/plugins/"*; do
+  if [ -f "$file" ]; then
+    echo -e "${RED}Removing existing $file...${NC}"
+    rm "$file"
+  fi
+done
+
+ln -s "$(pwd)/nvim/lua/plugins/"* "$HOME/.config/nvim/lua/plugins/"
 
 echo -e "${GREEN}Config installed successfully!${NC}"
