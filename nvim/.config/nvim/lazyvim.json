@@ -5,7 +5,8 @@
     "lazyvim.plugins.extras.lang.php",
     "lazyvim.plugins.extras.lang.python",
     "lazyvim.plugins.extras.lang.sql",
-    "lazyvim.plugins.extras.test.core"
+    "lazyvim.plugins.extras.test.core",
+    "lazyvim.plugins.extras.util.gitui"
   ],
   "install_version": 8,
   "news": {
