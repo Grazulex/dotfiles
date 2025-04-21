@@ -3,7 +3,7 @@ layout {
     plugin location="zellij:tab-bar"
   }
   pane split_direction="vertical" {
-    pane command="yazi" size="70%" name="Files"
+    pane edit="." size="70%" name="Files"
     pane split_direction="horizontal" {
       pane command="composer" {
         name "Testing"
