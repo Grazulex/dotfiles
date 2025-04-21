@@ -8,3 +8,5 @@ export PATH="$PATH:$HOME/.config/composer/vendor/bin"
 
 alias zla="zellij --layout laravel"
 alias y="yazi"
+
+fastfetch
