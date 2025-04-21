@@ -281,14 +281,14 @@ load_plugins {
 // simplified_ui true
  
 // Choose the theme that is specified in the themes section.
-// Default: default
+//Default: default
 // 
 theme "catppuccin"
  
 // Choose the base input mode of zellij.
 // Default: normal
 // 
-// default_mode "locked"
+//default_mode "normal"
  
 // Choose the path to the default shell that zellij will use for opening new panes
 // Default: $SHELL
@@ -458,7 +458,7 @@ theme "catppuccin"
 // Whether to show tips on startup
 // Default: true
 // 
-show_startup_tips false
+// show_startup_tips false
  
 // Whether to show release notes on first version run
 // Default: true

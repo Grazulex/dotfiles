@@ -21,7 +21,17 @@ if [[ -f /etc/os-release ]]; then
   fi
 fi
 
+#check if kitty is installed if not install it
+if ! command -v kitty &>/dev/null; then
+  echo -e "${BLUE}Kitty not found. Installing kitty...${NC}"
+  if [[ "$ID" == "ubuntu" || "$ID" == "debian" ]]; then
+    sudo apt install kitty -y
+  elif [[ "$ID" == "arch" || "$ID" == "manjaro" ]]; then
+    sudo pacman -S kitty --noconfirm
+  fi
+fi
+
 #stow dotfiles
-stow yazi zellij nvim alacritty bashrc
+stow yazi zellij nvim alacritty kitty bashrc
 
 echo -e "${GREEN}Config installed successfully!${NC}"
