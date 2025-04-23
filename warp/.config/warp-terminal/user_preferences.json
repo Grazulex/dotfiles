@@ -4,7 +4,7 @@
     "ShouldAddAgentModeChip": "false",
     "LigatureRenderingEnabled": "true",
     "NotebookFontSize": "14.0",
-    "AIRequestLimitInfo": "{\"limit\":150,\"num_requests_used_since_refresh\":6,\"next_refresh_time\":\"2025-04-26T05:07:25.889964Z\",\"is_unlimited\":false,\"request_limit_refresh_duration\":\"Monthly\",\"accepted_autosuggestions_limit\":999999,\"is_unlimited_autosuggestions\":true,\"accepted_autosuggestions_since_last_refresh\":5,\"is_unlimited_voice\":false,\"voice_request_limit\":10000,\"voice_token_limit\":30000,\"voice_requests_used_since_last_refresh\":0,\"voice_tokens_used_since_last_refresh\":0}",
+    "AIRequestLimitInfo": "{\"limit\":150,\"num_requests_used_since_refresh\":6,\"next_refresh_time\":\"2025-04-26T05:07:25.889964Z\",\"is_unlimited\":false,\"request_limit_refresh_duration\":\"Monthly\",\"accepted_autosuggestions_limit\":999999,\"is_unlimited_autosuggestions\":true,\"accepted_autosuggestions_since_last_refresh\":6,\"is_unlimited_voice\":false,\"voice_request_limit\":10000,\"voice_token_limit\":30000,\"voice_requests_used_since_last_refresh\":0,\"voice_tokens_used_since_last_refresh\":0}",
     "TelemetryEnabled": "true",
     "FontName": "\"JetBrainsMono Nerd Font Mono\"",
     "WelcomeTipsFeaturesUsed": "[{\"Hint\":\"BlockSelect\"},{\"Action\":\"SplitPane\"},{\"Hint\":\"CreateBlock\"},{\"Action\":\"ThemePicker\"},{\"Hint\":\"BlockAction\"}]",
