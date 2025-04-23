@@ -31,7 +31,20 @@ if ! command -v kitty &>/dev/null; then
   fi
 fi
 
+#install warp terminal
+if ! command -v warp-terminal &>/dev/null; then
+  echo -e "${BLUE}Warp terminal not found. Installing warp...${NC}"
+  if [[ "$ID" == "ubuntu" || "$ID" == "debian" ]]; then
+    warp_url="https://app.warp.dev/download?package=deb"
+    curl -L -o warp.deb "$warp_url"
+    chmod +x warp.deb
+    sudo dpkg -i warp.deb
+  elif [[ "$ID" == "arch" || "$ID" == "manjaro" ]]; then
+    #sudo pacman -S warp --noconfirm
+  fi
+fi
+
 #stow dotfiles
-stow yazi zellij nvim alacritty kitty bashrc
+stow yazi zellij nvim alacritty kitty bashrc wrap
 
 echo -e "${GREEN}Config installed successfully!${NC}"
