@@ -30,7 +30,7 @@
     "ExperimentId": "bc673fd5-af7d-4679-80bc-9b2540e307c2",
     "TelemetryEnabled": "true",
     "Theme": "{\"Custom\":{\"name\":\"Catppuccin Mocha\",\"path\":\"/home/jean-marc-strauven/.local/share/warp-terminal/themes/catppuccin_mocha.yml\"}}",
-    "AIRequestLimitInfo": "{\"limit\":150,\"num_requests_used_since_refresh\":112,\"next_refresh_time\":\"2025-04-26T05:07:25.889964Z\",\"is_unlimited\":false,\"request_limit_refresh_duration\":\"Monthly\",\"accepted_autosuggestions_limit\":999999,\"is_unlimited_autosuggestions\":true,\"accepted_autosuggestions_since_last_refresh\":15,\"is_unlimited_voice\":false,\"voice_request_limit\":10000,\"voice_token_limit\":30000,\"voice_requests_used_since_last_refresh\":0,\"voice_tokens_used_since_last_refresh\":0}",
+    "AIRequestLimitInfo": "{\"limit\":150,\"num_requests_used_since_refresh\":112,\"next_refresh_time\":\"2025-04-26T05:07:25.889964Z\",\"is_unlimited\":false,\"request_limit_refresh_duration\":\"Monthly\",\"accepted_autosuggestions_limit\":999999,\"is_unlimited_autosuggestions\":true,\"accepted_autosuggestions_since_last_refresh\":16,\"is_unlimited_voice\":false,\"voice_request_limit\":10000,\"voice_token_limit\":30000,\"voice_requests_used_since_last_refresh\":0,\"voice_tokens_used_since_last_refresh\":0}",
     "ShouldAddAgentModeChip": "false",
     "SavedPrompt": "\"Default\"",
     "AIRequestQuotaInfoSetting": "{\"cycle_history\":[{\"end_date\":\"2025-04-30T00:59:31.371916Z\",\"was_quota_exceeded\":false,\"banner_state\":{\"dismissed\":false}}]}",
